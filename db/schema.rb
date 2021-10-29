@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2021_10_29_070053) do
     t.integer "external_genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["external_genre_id"], name: "index_genres_on_external_genre_id", unique: true
   end
 
   create_table "save_films", force: :cascade do |t|
@@ -27,7 +26,6 @@ ActiveRecord::Schema.define(version: 2021_10_29_070053) do
     t.boolean "is_watched"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["external_film_id"], name: "index_save_films_on_external_film_id", unique: true
   end
 
   create_table "user_genres", force: :cascade do |t|
