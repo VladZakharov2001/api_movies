@@ -10,26 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_105948) do
+ActiveRecord::Schema.define(version: 2021_10_29_070053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "favorite_movies", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "id_film"
+  create_table "genres", force: :cascade do |t|
+    t.integer "external_genre_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["external_genre_id"], name: "index_genres_on_external_genre_id", unique: true
+  end
+
+  create_table "save_films", force: :cascade do |t|
+    t.integer "external_film_id"
     t.boolean "is_watched"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_favorite_movies_on_user_id"
+    t.index ["external_film_id"], name: "index_save_films_on_external_film_id", unique: true
   end
 
-  create_table "ganres", force: :cascade do |t|
+  create_table "user_genres", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "ganre"
+    t.bigint "genre_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_ganres_on_user_id"
+    t.index ["genre_id"], name: "index_user_genres_on_genre_id"
+    t.index ["user_id"], name: "index_user_genres_on_user_id"
+  end
+
+  create_table "user_save_films", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "save_film_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["save_film_id"], name: "index_user_save_films_on_save_film_id"
+    t.index ["user_id"], name: "index_user_save_films_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,6 +55,4 @@ ActiveRecord::Schema.define(version: 2021_10_26_105948) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "favorite_movies", "users"
-  add_foreign_key "ganres", "users"
 end
