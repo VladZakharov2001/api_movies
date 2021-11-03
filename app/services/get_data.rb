@@ -1,6 +1,6 @@
 class GetData
 
-  CODE_OK = Rack::Utils::HTTP_STATUS_CODES.select { |key, value| value == 'OK' }.keys[0]
+  CODE_OK = 200
   def info_genres
     responsegenre = Faraday.get "https://api.themoviedb.org/3/genre/movie/list?api_key=#{ENV["API_KEY"]}&language=en-US"
     self.handle_response(responsegenre.status)
