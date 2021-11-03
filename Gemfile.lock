@@ -60,17 +60,23 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bootsnap (1.9.1)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crass (1.0.6)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    execjs (2.8.1)
     faraday (1.8.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -93,6 +99,9 @@ GEM
     ffi (1.15.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    graphiql-rails (1.8.0)
+      railties
+      sprockets-rails
     graphql (1.12.17)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
@@ -150,6 +159,12 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    react-rails (2.6.1)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     ruby2_keywords (0.0.5)
     spring (3.0.0)
     sprockets (4.0.2)
@@ -160,6 +175,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     thor (1.1.0)
+    tilt (2.0.10)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.5)
@@ -175,11 +191,13 @@ DEPENDENCIES
   byebug
   dotenv-rails
   faraday
+  graphiql-rails (~> 1.8.0)
   graphql (~> 1.9)
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)
+  react-rails
   spring
   tzinfo-data
 
