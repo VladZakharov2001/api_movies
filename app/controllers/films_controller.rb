@@ -1,6 +1,5 @@
 class FilmsController < ApplicationController
   def show
-    @response = GetData.new.info_film_by_id(408)
-    render json: @response
+    render json: GetData.info_film_by_id(408)
   end
 end

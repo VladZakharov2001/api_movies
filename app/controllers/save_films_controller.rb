@@ -5,12 +5,12 @@ class SaveFilmsController < ApplicationController
 
   def index
     @films = SaveFilm.all
-    render body: @films.map{|f| "#{f.external_film_id}: #{f.is_watched}"}
+    render json: @films.map{|f| "#{f.external_film_id}: #{f.is_watched}"}
   end
 
   def create
-    SaveFilm.create(save_films_params)
-    render body: "created"
+    @films = SaveFilm.create(save_films_params)
+    render body: @films
   end
 
   private
