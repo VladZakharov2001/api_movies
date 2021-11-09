@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 2021_10_29_070053) do
 
   create_table "save_films", force: :cascade do |t|
     t.integer "external_film_id"
-    t.boolean "is_watched"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -40,6 +39,7 @@ ActiveRecord::Schema.define(version: 2021_10_29_070053) do
   create_table "user_save_films", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "save_film_id"
+    t.boolean "is_watched", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["save_film_id"], name: "index_user_save_films_on_save_film_id"

@@ -12,6 +12,7 @@ gem "react-rails"
 gem "puma", "~> 5.0"
 gem "graphiql-rails", "~> 1.8.0" 
 
+gem "sass-rails"
 # gem 'sidekiq', '~>6.0.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
