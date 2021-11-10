@@ -5,14 +5,7 @@ module Mutations
         def resolve(id:)
             user = context[:current_user]
             film = user.favorite_user_films.find(id).destroy
-            if(film)
-            {
-                errors:[]
-            }
-            else{
-                errors: film.errors.full_messages
-            }
-            end
+            { errors: film ? [] : film.errors.full_messages }
         end
     end
 end

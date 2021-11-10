@@ -6,14 +6,7 @@ module Mutations
             user = context[:current_user]
             film = user.favorite_user_films.find(id) 
             film.is_watched = !film.is_watched
-            if(film.save)
-            {
-                errors:[]
-            }
-            else{
-                errors: film.full_messages
-            }
-            end
+            { errors: film.save ? [] : film.errors.full_messages }
         end
     end 
 end

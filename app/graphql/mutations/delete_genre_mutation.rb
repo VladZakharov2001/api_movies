@@ -5,15 +5,7 @@ module Mutations
         def resolve(id:)
             user = context[:current_user]
             genre = user.user_genres.find(id).destroy
-            if(genre)
-            {
-                errors:[]
-            }
-            else
-            {
-                erorrs: genre.errors.full_messages
-            }
-            end
+            { errors: genre ? [] : genre.errors.full_messages }
         end
     end
 end
