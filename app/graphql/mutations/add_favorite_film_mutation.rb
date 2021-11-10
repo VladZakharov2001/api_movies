@@ -1,11 +1,19 @@
 module Mutations
     class AddFavoriteFilmMutation < BaseMutation
-        argument :film, ID, required: true
+        argument :favorite_film, ID, required: true
         field :errors,[String], null: false
-        def resolve(film:)
+        def resolve(favorite_film:)
             user = context[:current_user]
-            film = user.favorite_films << FavoriteFilm.where(external_film_id:film).first_or_initialize
-            { errors: film ? [] : film.errors.full_messages }
+            filmin = FavoriteFilm.where(external_film_id:favorite_film).first_or_initialize
+
+            if filmin.save
+                user.favorite_films << filmin unless user.favorite_films.exists?(filmin.id)
+                {
+                    errors:[]
+                }
+            else
+                { errors: filmin.errors.full_messages }
+            end
         end
     end
 end
