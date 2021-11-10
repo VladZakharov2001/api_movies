@@ -4,13 +4,15 @@ module Mutations
         field :errors,[String], null: false
         def resolve(genre:)
             user = context[:current_user]
-            genre = Genre.where(external_genre_id:genre).first_or_initialize
-
-            if(!(UserGenre.where(user_id:user.id,genre_id:genre.id).any?))
-                user.genres << genre
-                {
-                    errors:[]
-                }
+            genre = user.genres << Genre.create(external_genre_id:genre)
+            if(genre)
+            {
+                errors:[]
+            }
+            else
+            {
+                errors:genre.errors.full_messages
+            }
             end
         end
     end 

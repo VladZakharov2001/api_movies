@@ -1,15 +1,18 @@
 module Mutations
     class DeleteFavoriteFilmMutation < BaseMutation
-        argument :film, Integer, required: true
+        argument :id, Integer, required: true
         field :errors,[String], null: false
-        def resolve(film:)
+        def resolve(id:)
             user = context[:current_user]
-            film = FavoriteFilm.where(external_film_id:film)
-            userfilm = FavoriteUserFilm.where(user_id:user.id, favorite_film_id:film[0].id)
-            FavoriteUserFilm.delete(userfilm)
+            film = user.favorite_user_films.find(id).destroy
+            if(film)
             {
                 errors:[]
             }
+            else{
+                errors: film.errors.full_messages
+            }
+            end
         end
     end
 end
