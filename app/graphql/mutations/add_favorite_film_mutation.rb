@@ -6,10 +6,10 @@ module Mutations
 
         def resolve(film:)
             user = context[:current_user]
-            film = SaveFilm.where(external_film_id:film).first_or_initialize
+            film = FavoriteFilm.where(external_film_id:film).first_or_initialize
 
-            if(!(UserSaveFilm.where(user_id:user.id,save_film_id:film.id).any?))
-                user.save_films << film
+            if(!(FavoriteUserFilm.where(user_id:user.id,favorite_film_id:film.id).any?))
+                user.favorite_films << film
                 {
                     errors:[]
                 }

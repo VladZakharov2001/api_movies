@@ -1,5 +1,5 @@
 module Types
-  class SaveFilmType < Types::BaseObject
+  class FavoriteFilmType < Types::BaseObject
     field :id, ID, null: false
     field :external_film_id, Integer, null: true
     field :is_watched, Boolean, null: true

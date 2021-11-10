@@ -7,7 +7,7 @@ module Types
     # They will be entry points for queries on your schema.
     # TODO: remove me
     field :me, Types::UserType, null: true
-    field :user_save_films, [Types::UserSaveFilmType], null:false
+    field :favorite_user_films, [Types::FavoriteUserFilmType], null:false
     field :user_genres, [Types::UserGenreType], null:false
     field :all_genres, String, null:false 
 
@@ -31,9 +31,9 @@ module Types
       UserGenre.where(user_id: user.id)
     end 
 
-    def user_save_films
+    def favorite_user_films
       user = context[:current_user]
-      UserSaveFilm.where(user_id: user.id)
+      FavoriteUserFilm.where(user_id: user.id)
     end
 
     def all_genres

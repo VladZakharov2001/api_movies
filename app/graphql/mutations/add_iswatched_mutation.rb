@@ -4,8 +4,8 @@ module Mutations
         field :errors,[String], null: false
         def resolve(film:)
             user = context[:current_user]
-            film = SaveFilm.where(external_film_id:film)
-            watched = UserSaveFilm.where(user_id:user.id,save_film_id:film[0].id)
+            film = FavoriteFilm.where(external_film_id:film)
+            watched = FavoriteUserFilm.where(user_id:user.id,favorite_film_id:film[0].id)
             watched[0].is_watched = !watched[0].is_watched
             watched[0].save
             {
