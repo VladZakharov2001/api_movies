@@ -4,15 +4,15 @@ module Mutations
         field :errors,[String], null: false
         def resolve(favorite_film:)
             user = context[:current_user]
-            filmin = FavoriteFilm.where(external_film_id:favorite_film).first_or_initialize
+            film = FavoriteFilm.where(external_film_id:favorite_film).first_or_initialize
 
-            if filmin.save
-                user.favorite_films << filmin unless user.favorite_films.exists?(filmin.id)
+            if film.save
+                user.favorite_films << film unless user.favorite_films.exists?(film.id)
                 {
                     errors:[]
                 }
             else
-                { errors: filmin.errors.full_messages }
+                { errors: film.errors.full_messages }
             end
         end
     end
