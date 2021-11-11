@@ -3,6 +3,7 @@ class CreateUserSaveFilms < ActiveRecord::Migration[6.1]
     create_table :user_save_films do |t|
       t.belongs_to :user
       t.belongs_to :save_film
+      t.boolean :is_watched ,default: false
       t.timestamps
     end
   end

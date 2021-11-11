@@ -7,9 +7,12 @@ ruby "3.0.2"
 gem "rails", "~> 6.1.4", ">= 6.1.4.1"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
-# Use Puma as the app server   
+# Use Puma as the app server  
+gem "react-rails" 
 gem "puma", "~> 5.0"
+gem "graphiql-rails", "~> 1.8.0" 
 
+gem "sass-rails"
 # gem 'sidekiq', '~>6.0.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
